@@ -12,8 +12,6 @@ const authRoute = require("./routes/auth");
 dotenv.config();
 const port = process.env.PORT || 5050;
 
-// mongodb+srv://toprak:toprak@cluster0.h0ryv.mongodb.net/toprak?retryWrites=true&w=majority
-
 const mongoURL = process.env.MONGO_URL;
 
 mongoose
