@@ -8,6 +8,7 @@ router.get("/", async (req, res) => {
 
 // update user
 router.put("/:id", async (req, res) => {
+  
   if (req.body.userId === req.params.id) {
     //update password
     if (req.body.password) {
