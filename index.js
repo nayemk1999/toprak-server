@@ -10,6 +10,7 @@ const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const reviewRoute = require("./routes/review");
 const propertyRoute = require("./routes/property");
+const adminRoute = require("./routes/admin");
 
 dotenv.config();
 const port = process.env.PORT || 5050;
@@ -35,6 +36,7 @@ app.use("/user", userRoute);
 app.use("/auth", authRoute);
 app.use("/property", propertyRoute);
 app.use("/review", reviewRoute);
+app.use("/admin", adminRoute);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')

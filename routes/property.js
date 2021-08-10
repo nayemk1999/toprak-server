@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const Property = require("../models/PostData");
-const ObjectId = require('mongodb').ObjectID;
 
 
 router.post("/add-post", async (req, res) => {
