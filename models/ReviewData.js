@@ -13,6 +13,9 @@ const reviewSchema = new Schema({
     message: {
         type: String,
         require: true
+    },
+    profilePicture: {
+        type: String
     }
 })
 
