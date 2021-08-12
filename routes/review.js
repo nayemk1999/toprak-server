@@ -3,10 +3,10 @@ const bcrypt = require("bcrypt");
 const Review = require("../models/ReviewData");
 
 router.post("/add-review", async (req, res) => {
-    const newReview = req.body
+  
     try {
       // Create new user
-      const newReview = await new Review(newReview);
+      const newReview = await new Review(req.body);
   
       //   save and return response
       const review = await newReview.save();
