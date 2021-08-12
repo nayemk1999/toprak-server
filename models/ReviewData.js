@@ -13,10 +13,6 @@ const reviewSchema = new Schema({
     message: {
         type: String,
         require: true
-    },
-    img: {
-        type: String,
-        require: true
     }
 })
 
