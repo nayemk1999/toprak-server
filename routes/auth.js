@@ -5,6 +5,13 @@ const bcrypt = require("bcrypt");
 router.post("/register", async (req, res) => {
   try {
     // new secure Password
+
+    const isNewUser = await User.isThisEmailUse(req.body.email);
+
+  if (!isNewUser) {
+    const singleUser = await User.findOne({ email: req.body.email })
+    res.status(200).json(singleUser);
+  }
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
@@ -16,6 +23,7 @@ router.post("/register", async (req, res) => {
     });
 
     //   save and return response
+    
     const user = await newUser.save();
     res.status(200).json(user);
   } catch (err) {

@@ -32,8 +32,9 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan("common"));
 
-app.use("/user", userRoute);
+
 app.use("/auth", authRoute);
+app.use("/user", userRoute);
 app.use("/property", propertyRoute);
 app.use("/review", reviewRoute);
 app.use("/admin", adminRoute);
