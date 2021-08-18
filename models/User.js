@@ -52,5 +52,16 @@ const UserSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+UserSchema.statics.isThisEmailUse = async function (email) {
+  if (!email) throw new Error('Invalid Email')
+  try {
+    const user = await this.findOne({ email })
+    if (user) return false
 
+    return true
+  } catch (error) {
+    console.log('Error inside isThisEmailUse', error.message)
+    return false
+  }
+}
 module.exports = mongoose.model("User", UserSchema);
