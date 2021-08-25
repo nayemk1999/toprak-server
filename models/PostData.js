@@ -42,18 +42,6 @@ const postSchema = new Schema({
         type: String,
         require: true
     },
-    division: {
-        type: String,
-        require: true
-    },
-    district: {
-        type: String,
-        require: true
-    },
-    upazilla: {
-        type: String,
-        require: true
-    },
     beds: {
         type: String,
         require: true
