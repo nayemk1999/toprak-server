@@ -29,6 +29,17 @@ router.get("/all-post", async (req, res) => {
   }
 });
 
+router.post("/search-post", async (req, res) => {
+  console.log(req.body);
+  try {
+    const property = await Property.find({ address: {$regex: req.body.location, $options: '$in'} });
+    !property && res.status(400).json("No Property found");
+    res.status(200).json(property);
+  } catch (err) {
+    res.status(500).json(property);
+  }
+});
+
 router.get("/single-property/:id", async (req, res) => {
   const id = req.params.id
   try {
