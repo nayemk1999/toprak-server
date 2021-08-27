@@ -2,13 +2,17 @@ const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
-router.get("/", async (req, res) => {
-  res.send("hi");
+router.get("/:id", async (req, res) => {
+  try {
+    const user = await User.findOne({username: req.params.id});
+    res.status(200).json(user);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
 });
 
 // update user
-router.put("/:id", async (req, res) => {
-  
+router.patch("/:id", async (req, res) => {
   if (req.body.userId === req.params.id) {
     //update password
     if (req.body.password) {
@@ -23,11 +27,11 @@ router.put("/:id", async (req, res) => {
       const user = await User.findByIdAndUpdate(
         req.params.id,
         {
-          $set: req.body,
+          $set: req.body
         },
         { new: true }
       );
-      res.status(200).json("Account has been updated");
+      res.status(200).json(user);
     } catch (err) {
       return res.status(500).json(err);
     }
