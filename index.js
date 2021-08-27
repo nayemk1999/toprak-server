@@ -15,12 +15,13 @@ const adminRoute = require("./routes/admin");
 dotenv.config();
 const port = process.env.PORT || 5050;
 const mongoURL = process.env.MONGO_URL;
-
+mongoose.set('useFindAndModify', false);
 mongoose
   .connect(mongoURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+
   })
   .then(() => console.log("Database connected!"))
   .catch((err) => console.log(err));
