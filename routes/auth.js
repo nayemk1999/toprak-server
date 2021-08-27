@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 router.post("/register", async (req, res) => {
   try {
@@ -27,16 +28,17 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.userName });
-    
+
     !user && res.status(400).json("No user found");
-    
+
     const validPassword = await bcrypt.compare(
       req.body.password,
       user.password
     );
     !validPassword && res.status(400).json("Invalid password");
 
-    res.status(200).json(user);
+    const token = jwt.sign({ user }, 'user_secret_key')
+    res.status(200).json(token);
     // res.send(user);
   } catch (err) {
     res.status(500).json(err);
